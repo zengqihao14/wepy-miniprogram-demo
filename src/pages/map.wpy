@@ -1,13 +1,23 @@
 <template lang="pug">
   view.container
     view.title(@tap="fetchLocation") MAP DEMO PAGE
-    map(bindmarkertap="markertap" longitude="{{lng}}" latitude="{{lat}}")
+    map.map(
+      longitude="{{lng}}"
+      latitude="{{lat}}"
+      markers="{{markers}}"
+      include-points="{{includePoints}}"
+      show-compass
+      enable-zoom
+      show-location
+      enable-rotate="false"
+    )
 </template>
 
 <script>
   import wepy from 'wepy'
   import { connect } from 'wepy-redux'
   import { fetchLocation } from '@/store/actions'
+  import { MAP_MARKERS } from '@/constants/map'
 
   @connect({
     lat (state) {
@@ -26,8 +36,31 @@
     }
     components = {}
     data = {}
+    computed = {
+      markers() {
+        return MAP_MARKERS.map((marker, index) => ({
+          id: index,
+          latitude: marker.latitude,
+          longitude: marker.longitude,
+          width: 25,
+          height: 25,
+          iconPath: '../assets/images/pin-png.png',
+          zIndex: 10
+        }))
+      },
+      includePoints() {
+        return [
+          ...MAP_MARKERS,
+          {
+            latitude: this.lat,
+            longitude: this.lng
+          }
+        ]
+      }
+    }
     methods = {}
     onLoad() {
+      console.log(this)
       this.methods.fetchLocation()
     }
   }
@@ -41,4 +74,8 @@
     text-align: center
     padding: 8px 0
     margin-bottom: 32px
+  .map
+    position: relative
+    width: 100%
+    height: 240px
 </style>
