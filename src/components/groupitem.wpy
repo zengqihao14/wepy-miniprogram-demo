@@ -2,11 +2,13 @@
 .groupitem {
 }
 </style>
-<template>
-  <view class="groupitem">
-    --<text class="id">{{gitem.childid}}.</text>
-    <text class="name" @tap="tap"> {{gitem.childname}}</text>
-  </view>
+<template lang="pug">
+  view.groupitem
+    test ---
+    test.id {{gitem.childid}}.
+    test.name(
+      @tap="tap"
+    ) {{gitem.childname}}
 </template>
 <script>
   import wepy from 'wepy'

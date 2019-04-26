@@ -26,14 +26,10 @@
     }
   }
 </style>
-<template>
-  <view class="panel">
-    <slot name="title">
-      Title
-    </slot>
-    <slot>
-    </slot>
-  </view>
+<template lang="pug">
+  view.panel
+    slot(name="title")
+    slot
 </template>
 <script>
   import wepy from 'wepy'

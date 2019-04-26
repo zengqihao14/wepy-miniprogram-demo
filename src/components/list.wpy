@@ -6,18 +6,16 @@
     color: green;
   }
 </style>
-<template>
-  <view class="list">
-  <view>
-    <button @tap="add" size="mini">添加列表</button>
-  </view>
-    <block wx:for-items="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="id">
-      <view @tap="tap" class="mylist">
-        <text>{{item.id}}</text>: {{item.title}}
-      </view>
-    </block>
-  </view>
+
+<template lang="pug">
+  view.list
+  view
+    button(@tap="add" size="mini") 添加列表
+    block(wx:for-items="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="id")
+      view.mylist(@tap="tap")
+        text {{item.id}}: {{item.title}}
 </template>
+
 <script>
   import wepy from 'wepy'
 

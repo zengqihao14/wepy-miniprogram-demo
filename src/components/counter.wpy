@@ -14,18 +14,19 @@
     }
   }
 </style>
-<template>
-  <view class="counter {{style}}">
-    <button @tap="plus" size="mini">  +  </button>
-    <button @tap="minus" size="mini">  -  </button>
-    <button @tap="incNum" size="mini">  INCREMENT  </button>
-    <button @tap="decNum" size="mini">  DECREMENT  </button>
-    <button @tap="asyncInc" size="mini">  ASYNC INCREMENT  </button>
-    <text class="count"> {{num}} </text>
-    <text class="count"> {{stateNum}} </text>
-    <text class="count"> {{asyncNum}} </text>
-  </view>
+
+<template lang="pug">
+  view.counter(:class="style")
+    button(@tap="plus" size="mini") +
+    button(@tap="minus" size="mini") -
+    button(@tap="incNum" size="mini") INCREMENT
+    button(@tap="decNum" size="mini") DECREMENT
+    button(@tap="asyncInc" size="mini") ASYNC INCREMENT
+    text.count {{num}}
+    text.count {{stateNum}}
+    text.count {{asyncNum}}
 </template>
+
 <script>
   import wepy from 'wepy'
   import { connect } from 'wepy-redux'
