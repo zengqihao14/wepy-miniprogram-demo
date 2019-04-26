@@ -1,18 +1,14 @@
-<style lang="less">
-  .counter {
-    text-align: left;
-    font-size: 12px;
-  }
-  .count {
-    font-size: 18px;
-    font-weight: bold;
-    &.red {
-      color: red;
-    }
-    &.green {
-      color: green;
-    }
-  }
+<style lang="sass">
+  .counter
+    text-align: left
+    font-size: 12px
+  .count
+    font-size: 18px
+    font-weight: bold
+    &.red
+      color: red
+    &.green
+      color: green
 </style>
 
 <template lang="pug">

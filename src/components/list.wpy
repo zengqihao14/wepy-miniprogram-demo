@@ -1,10 +1,9 @@
-<style lang="less">
-  .mylist:odd {
-    color: red;
-  }
-  .mylist:even {
-    color: green;
-  }
+<style lang="sass">
+  .mylist
+    &:odd
+      color: red
+    &:even
+      color: green
 </style>
 
 <template lang="pug">

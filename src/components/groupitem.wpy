@@ -1,6 +1,5 @@
-<style type="less">
-.groupitem {
-}
+<style type="sass">
+  .groupitem
 </style>
 <template lang="pug">
   view.groupitem
