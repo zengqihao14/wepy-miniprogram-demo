@@ -1,13 +1,13 @@
 <template lang="pug">
   view.container
-    view.title MAP DEMO PAGE
+    view.title(@tap="fetchLocation") MAP DEMO PAGE
     map(bindmarkertap="markertap" longitude="{{lng}}" latitude="{{lat}}")
 </template>
 
 <script>
   import wepy from 'wepy'
   import { connect } from 'wepy-redux'
-  import { fetchLocation, setLocation } from '@/store/actions'
+  import { fetchLocation } from '@/store/actions'
 
   @connect({
     lat (state) {
@@ -17,7 +17,6 @@
       return state.map.lng
     }
   }, {
-    setLocation,
     fetchLocation
   })
 
@@ -29,8 +28,7 @@
     data = {}
     methods = {}
     onLoad() {
-      fetchLocation()
-      setLocation()
+      this.methods.fetchLocation()
     }
   }
 </script>
