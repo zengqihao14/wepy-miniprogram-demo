@@ -1,0 +1,46 @@
+<template lang="pug">
+  view.container
+    view.title MAP DEMO PAGE
+    map(bindmarkertap="markertap" longitude="{{lng}}" latitude="{{lat}}")
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import { connect } from 'wepy-redux'
+  import { fetchLocation, setLocation } from '@/store/actions'
+
+  @connect({
+    lat (state) {
+      return state.map.lat
+    },
+    lng (state) {
+      return state.map.lng
+    }
+  }, {
+    setLocation,
+    fetchLocation
+  })
+
+  export default class Map extends wepy.page {
+    config = {
+      navigationBarTitleText: 'MAP PAGE'
+    }
+    components = {}
+    data = {}
+    methods = {}
+    onLoad() {
+      fetchLocation()
+      setLocation()
+    }
+  }
+</script>
+
+<style lang="sass">
+  .title
+    font-size: 20px
+    line-height: 1.4
+    width: 100%
+    text-align: center
+    padding: 8px 0
+    margin-bottom: 32px
+</style>
