@@ -1,6 +1,11 @@
 # Wepy MiniProgram Demo
 > My first wepy-miniprogram
 
+## Requirements
+
+- Node.js v11.13.0
+- wepy-cli v1.7.3
+
 ## Build Setup
 
 #### Install wepy-cli
@@ -13,12 +18,9 @@ $ npm install wepy-cli -g
 
 ``` bash
 $ npm install
-
-# Use Yarn:
-$ yarn install
 ```
 #### Build and watching
 
 ``` bash
-$ wepy build --watch
+$ npm run dev
 ```
