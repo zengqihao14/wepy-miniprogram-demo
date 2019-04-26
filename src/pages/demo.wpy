@@ -1,13 +1,62 @@
+<style lang="sass">
+  .userinfo
+    display: flex
+    flex-direction: column
+    align-items: center
+    &-avatar
+      width: 80rpx
+      height: 80rpx
+      border-radius: 50%
+    &-nickname
+      font-size: 18px
+      line-height: 1.5
+      color: #AAA
+</style>
+
 <template lang="pug">
   view.container
     view.userinfo(@tap="handleViewTap")
       image.userinfo-avatar(src="{{ userInfo.avatarUrl }}" background-size="cover")
       view.userinfo-nickname {{ userInfo.nickName }}
-    view.loadingContainer
-      view.dotsLoading
-        view.dotsLoading-dots
-        view.dotsLoading-dots
-        view.dotsLoading-dots
+    panel
+      view.title(slot="title") test
+    panel
+      view.title(slot="title") 测试数据绑定
+      text.info {{normalTitle}}
+      text.info {{setTimeoutTitle}}
+      text.info {{mixin}}
+      text.info {{mynum}}
+      text.info {{now}}
+      text.info {{num}}
+      text.info {{asyncNum}}
+      text.info {{sumNum}}
+      button(@tap="plus('a')" size="mini") +
+    panel
+      view.title(slot="title") 其它测试
+      button(@tap="toast" size="mini") 第三方组件(toast)
+      button(@tap="communicate" size="mini") 组件通信
+      button(@tap="tap" size="mini") 混合TAP事件
+    panel
+      view.title(slot="title") 测试并发网络请求
+      view 返回结果:
+        text {{netrst}}
+      button(@tap="request" size="mini") 点我发起10个请求
+    panel
+      view.title(slot="title") 测试组件
+      text.testcounter 计数组件1:
+      view.counterview
+        counter1(@index-emit.user="counterEmit")
+      text.testcounter 计数组件2:
+      view.counterview
+        counter2(:num.sync="mynum")
+    panel
+      view.title(slot="title") 测试组件Repeat
+      repeat(for="" index="index" item="item" key="key")
+        group(:grouplist="item" :indexa="index")
+    panel
+      view.title(slot="title") 测试列表
+      list
+    toast
 </template>
 
 <script>
@@ -37,7 +86,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: 'Main Page'
+      navigationBarTitleText: 'test'
     }
     components = {
       panel: Panel,
@@ -182,24 +231,3 @@
     }
   }
 </script>
-
-<style lang="sass">
-  .userinfo
-    display: flex
-    flex-direction: column
-    align-items: center
-    &-avatar
-      width: 80rpx
-      height: 80rpx
-      border-radius: 50%
-    &-nickname
-      font-size: 18px
-      line-height: 1.5
-      color: #AAA
-  .loadingContainer
-    display: flex
-    flex-direction: row
-    justify-content: center
-    align-items: center
-    margin: 15px auto
-</style>
