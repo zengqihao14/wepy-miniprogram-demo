@@ -87,21 +87,23 @@
     flex-direction: column
     justify-content: start
     align-items: center
-    margin: 15px auto
-    padding: 0 16px
-    width: 100%
+    margin: 15px 32px 15px
+    padding: 0
+    width: auto
+    border: 1px solid rgba(0, 0, 0, .05)
     &-item
       box-sizing: border-box
       position: relative
-      margin: 0 0 5px
-      padding: 8px 15px
+      margin: 0
+      padding: 10px 15px
       width: 100%
-      border: 1px solid #FFF
-      border-radius: 0
+      border: none
       background-color: #FFF
       font-size: 14px
       line-height: 1.2
       text-align: center
-      &:last-child
-        margin: 0
+      &:nth-child(odd)
+        background-color: #FFF
+      &:nth-child(even)
+        background-color: rgba(0, 0, 0, .05)
 </style>

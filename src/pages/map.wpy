@@ -60,7 +60,6 @@
     }
     methods = {}
     onLoad() {
-      console.log(this)
       this.methods.fetchLocation()
     }
   }
