@@ -45,7 +45,7 @@
     flex-direction: column
     justify-content: start
     align-items: center
-    margin: 15px 32px 15px
+    margin: 15px
     padding: 0
     width: auto
     border: 1px solid rgba(0, 0, 0, .05)
