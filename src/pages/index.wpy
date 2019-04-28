@@ -32,6 +32,8 @@
 </script>
 
 <style lang="sass">
+  @import '../assets/styles/_partial/iconfont'
+
   .loadingContainer
     display: flex
     flex-direction: row
@@ -60,8 +62,18 @@
       font-size: 14px
       line-height: 1.2
       text-align: center
+      @include iconfont($icon_menu)
       &:nth-child(odd)
         background-color: #FFF
       &:nth-child(even)
         background-color: rgba(0, 0, 0, .05)
+      &::before
+        position: absolute
+        display: block
+        width: 24px
+        height: 24px
+        top: 50%
+        left: 5px
+        transform: translateY(-50%)
+        @include iconfont($icon_menu)
 </style>
