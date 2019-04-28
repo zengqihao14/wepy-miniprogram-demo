@@ -1,6 +1,7 @@
 <template lang="pug">
   view.container
     view.title(@tap="fetchLocation") MAP DEMO PAGE
+    user-info
     map.map(
       longitude="{{lng}}"
       latitude="{{lat}}"
@@ -15,6 +16,7 @@
 
 <script>
   import wepy from 'wepy'
+  import UserInfo from '@/components/userInfo'
   import { connect } from 'wepy-redux'
   import { fetchLocation } from '@/store/actions'
   import { MAP_MARKERS } from '@/constants/map'
@@ -34,7 +36,9 @@
     config = {
       navigationBarTitleText: 'MAP PAGE'
     }
-    components = {}
+    components = {
+      'user-info': UserInfo
+    }
     data = {}
     computed = {
       markers() {
@@ -72,7 +76,7 @@
     width: 100%
     text-align: center
     padding: 8px 0
-    margin-bottom: 32px
+    margin-bottom: 15px
   .map
     position: relative
     width: 100%

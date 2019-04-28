@@ -1,13 +1,6 @@
 <template lang="pug">
   view.container
-    button.userAuthBtn(
-      wx:if="{{!hasAuthorized}}"
-      open-type="getUserInfo"
-      bindgetuserinfo="fetchUserInfo"
-    ) GetUserInfo
-    view.userinfo(wx:else)
-      image.userinfo-avatar(src="{{userInfo.avatarUrl}}" background-size="cover")
-      view.userinfo-nickname {{userInfo.nickName}}
+    user-info
     view.loadingContainer
       view.dotsLoading
         view.dotsLoading-dots
@@ -20,30 +13,18 @@
 
 <script>
   import wepy from 'wepy'
-  import { connect } from 'wepy-redux'
-  import { fetchUserInfo } from '@/store/actions'
+  import UserInfo from '@/components/userInfo'
   import { PAGES } from '@/constants/index.js'
-
-  @connect({
-    userInfo (state) {
-      return state.auth.userInfo
-    }
-  }, {
-    fetchUserInfo
-  })
 
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: 'Main Page'
     }
-    components = {}
+    components = {
+      'user-info': UserInfo
+    }
     data = {
       pages: PAGES
-    }
-    computed = {
-      hasAuthorized: () => {
-        return !!this.userInfo
-      }
     }
     methods = {}
     onLoad() {}
@@ -51,29 +32,6 @@
 </script>
 
 <style lang="sass">
-  .userinfo
-    display: flex
-    flex-direction: column
-    align-items: center
-    margin: 15px auto
-    &-avatar
-      width: 80rpx
-      height: 80rpx
-      border-radius: 50%
-    &-nickname
-      font-size: 18px
-      line-height: 1.5
-      color: #AAA
-      margin-top: 10px
-  .userAuthBtn
-    box-sizing: border-box
-    position: relative
-    display: block
-    margin: 15px auto
-    font-size: 15px
-    text-align: center
-    padding: 5px 10px
-    width: 220rpx
   .loadingContainer
     display: flex
     flex-direction: row
