@@ -1,6 +1,11 @@
 <template lang="pug">
   view.container
-    view.userinfo(@tap="handleViewTap")
+    button.userAuthBtn(
+      wx:if="{{!hasAuthorized}}"
+      open-type="getUserInfo"
+      bindgetuserinfo="fetchUserInfo"
+    ) GetUserInfo
+    view.userinfo(wx:else)
       image.userinfo-avatar(src="{{userInfo.avatarUrl}}" background-size="cover")
       view.userinfo-nickname {{userInfo.nickName}}
     view.loadingContainer
@@ -15,7 +20,17 @@
 
 <script>
   import wepy from 'wepy'
+  import { connect } from 'wepy-redux'
+  import { fetchUserInfo } from '@/store/actions'
   import { PAGES } from '@/constants/index.js'
+
+  @connect({
+    userInfo (state) {
+      return state.auth.userInfo
+    }
+  }, {
+    fetchUserInfo
+  })
 
   export default class Index extends wepy.page {
     config = {
@@ -23,28 +38,15 @@
     }
     components = {}
     data = {
-      pages: PAGES,
-      userInfo: {
-        nickName: '加载中...'
+      pages: PAGES
+    }
+    computed = {
+      hasAuthorized: () => {
+        return !!this.userInfo
       }
     }
     methods = {}
-    onLoad() {
-      this.$parent.getUserInfo((userInfo) => {
-        if (userInfo) {
-          this.userInfo = userInfo
-        }
-        this.$apply()
-      })
-    }
-    getUserInfo(e) {
-      console.log(e)
-      this.globalData.userInfo = e.detail.userInfo
-      this.setData({
-        userInfo: e.detail.userInfo,
-        hasUserInfo: true
-      })
-    }
+    onLoad() {}
   }
 </script>
 
@@ -53,6 +55,7 @@
     display: flex
     flex-direction: column
     align-items: center
+    margin: 15px auto
     &-avatar
       width: 80rpx
       height: 80rpx
@@ -61,6 +64,16 @@
       font-size: 18px
       line-height: 1.5
       color: #AAA
+      margin-top: 10px
+  .userAuthBtn
+    box-sizing: border-box
+    position: relative
+    display: block
+    margin: 15px auto
+    font-size: 15px
+    text-align: center
+    padding: 5px 10px
+    width: 220rpx
   .loadingContainer
     display: flex
     flex-direction: row
